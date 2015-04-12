@@ -1,5 +1,6 @@
-package com.brackinscarroll.cybersecurityqrnfc;
+package com.brackinscarroll.cybersecurityqrnfc.controllers;
 
+import android.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -11,10 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
+import com.brackinscarroll.cybersecurityqrnfc.R;
+import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
+import com.brackinscarroll.cybersecurityqrnfc.views.MainFragment;
 
-public class MainActivity extends ActionBarActivity
+
+public class MainActivity extends ActionBarActivity implements MainFragmentListener
 {
 
+    private MainFragment _mainFragment;
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -22,9 +28,16 @@ public class MainActivity extends ActionBarActivity
         setContentView( R.layout.activity_main );
         if( savedInstanceState == null )
         {
-            getSupportFragmentManager().beginTransaction()
-                    .add( R.id.container, new PlaceholderFragment() )
+            FragmentManager fragmentManager = getFragmentManager();
+
+            _mainFragment = new MainFragment();
+            fragmentManager.beginTransaction()
+                    .add( R.id.container, _mainFragment )
                     .commit();
+        }
+        else
+        {
+
         }
     }
 
@@ -54,22 +67,10 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected( item );
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment
+    @Override
+    public void onSaveInstanceState( Bundle bundle )
     {
-
-        public PlaceholderFragment()
-        {
-        }
-
-        @Override
-        public View onCreateView( LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState )
-        {
-            View rootView = inflater.inflate( R.layout.fragment_main, container, false );
-            return rootView;
-        }
+        super.onSaveInstanceState( bundle );
+        //Put stuff into the bundle
     }
 }
