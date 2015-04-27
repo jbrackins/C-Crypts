@@ -7,15 +7,20 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.brackinscarroll.cybersecurityqrnfc.R;
+import com.brackinscarroll.cybersecurityqrnfc.adapters.ExtendedAdapter;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
 
 public class MainFragment extends Fragment
 {
 
     private MainFragmentListener mListener;
+
+    private ListView _listView;
+    private ExtendedAdapter _adapter;
 
     public MainFragment()
     {
@@ -47,6 +52,9 @@ public class MainFragment extends Fragment
         }
 
         View rootView = inflater.inflate( R.layout.fragment_main, container, false );
+        _listView = ( ListView ) rootView.findViewById( R.id.list_view );
+        _adapter = new ExtendedAdapter( inflater );
+        _listView.setAdapter( _adapter );
         return rootView;
     }
 
@@ -76,5 +84,10 @@ public class MainFragment extends Fragment
     public void onSaveInstanceState( Bundle bundle )
     {
         super.onSaveInstanceState( bundle );
+    }
+
+    public void setAdapterMessage( String msg )
+    {
+        _adapter.addMessage( msg );
     }
 }

@@ -5,4 +5,6 @@ package com.brackinscarroll.cybersecurityqrnfc.interfaces;
  */
 public interface MainFragmentListener
 {
+    public void onNavigationDrawerItemSelected( int position );
+
 }
