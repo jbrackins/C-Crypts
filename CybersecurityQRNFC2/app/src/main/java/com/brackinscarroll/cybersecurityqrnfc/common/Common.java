@@ -39,6 +39,16 @@ public class Common
             public final static String TAG = "SimpleWriteFragment";
         }
 
+        public class KeyAuthenticateFragment
+        {
+            public final static String TAG = "KeyAuthenticateFragment";
+        }
+
+        public class KeyGenerateFragment
+        {
+            public final static String TAG = "KeyGenerateFragment";
+        }
+
 
         public class Navigation
         {

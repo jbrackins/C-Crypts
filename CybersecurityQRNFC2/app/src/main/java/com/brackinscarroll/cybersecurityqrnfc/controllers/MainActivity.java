@@ -17,6 +17,8 @@ import com.brackinscarroll.cybersecurityqrnfc.common.Common;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MessageListener;
 import com.brackinscarroll.cybersecurityqrnfc.models.IsoDepRunnable;
+import com.brackinscarroll.cybersecurityqrnfc.views.KeyAuthenticateFragment;
+import com.brackinscarroll.cybersecurityqrnfc.views.KeyGenerateFragment;
 import com.brackinscarroll.cybersecurityqrnfc.views.MainFragment;
 import com.brackinscarroll.cybersecurityqrnfc.views.MainNavigationDrawerFragment;
 import com.brackinscarroll.cybersecurityqrnfc.views.SimpleReadFragment;
@@ -32,6 +34,8 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
     private ListView _listview;
 
     private MainFragment _mainFragment;
+    private KeyGenerateFragment _keyGenerateFragment;
+    private KeyAuthenticateFragment _keyAuthenticateFragment;
     private SimpleReadFragment _simpleReadFragment;
     private SimpleWriteFragment _simpleWriteFragment;
 
@@ -62,14 +66,14 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
             switch( _currentFragment )
             {
                 case 0:
-                    //_viewProfileFragment = ( ViewProfileFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
+                    _mainFragment = ( MainFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
                     break;
                 case 1:
-                    //_editProfileFragment = ( EditProfileFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
+                    _keyGenerateFragment = ( KeyGenerateFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
                     break;
                 case 2:
                 {
-                    //_searchFragment = ( SearchFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
+                    _keyAuthenticateFragment = ( KeyAuthenticateFragment ) getFragmentManager().findFragmentById( R.id.main_activity_frame );
                     break;
                 }
                 case 3:
@@ -199,14 +203,18 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
             case 1:
             {
 
-                //_editProfileFragment = new EditProfileFragment();
-                //fragmentManager.beginTransaction()
-                //        .replace( R.id.main_activity_frame, _editProfileFragment )
-                //        .commit();
+                _keyGenerateFragment = new KeyGenerateFragment();
+                fragmentManager.beginTransaction()
+                        .replace( R.id.main_activity_frame, _keyGenerateFragment )
+                        .commit();
                 break;
             }
             case 2:
             {
+                _keyAuthenticateFragment = new KeyAuthenticateFragment();
+                fragmentManager.beginTransaction()
+                        .replace( R.id.main_activity_frame, _keyAuthenticateFragment )
+                        .commit();
                 break;
             }
             case 3:
