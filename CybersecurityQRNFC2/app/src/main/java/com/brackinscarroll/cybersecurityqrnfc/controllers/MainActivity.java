@@ -223,6 +223,23 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
         }
     }
 
+    @Override
+    public void aboutApp()
+    {
+        new AlertDialog.Builder( this )
+                .setTitle( R.string.app_name )
+                .setMessage( getString( R.string.str_about_desc ) )
+                .setPositiveButton( R.string.str_cool, new DialogInterface.OnClickListener()
+                {
+                    public void onClick( DialogInterface dialog, int which )
+                    {
+                        //NOTHING
+                    }
+                } )
+                .setIcon( R.drawable.ic_action_person )
+                .show();
+    }
+
 
     @Override
     protected void onNewIntent( Intent intent )

@@ -1,26 +1,24 @@
 package com.brackinscarroll.cybersecurityqrnfc.views;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.brackinscarroll.cybersecurityqrnfc.R;
 import com.brackinscarroll.cybersecurityqrnfc.adapters.ExtendedAdapter;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
 
-public class MainFragment extends Fragment
+public class MainFragment extends Fragment implements View.OnClickListener
 {
 
-    private MainFragmentListener mListener;
+    private MainFragmentListener _listener;
 
-    private ListView _listView;
-    private ExtendedAdapter _adapter;
+    private Button _buttonAbout;
 
     public MainFragment()
     {
@@ -52,9 +50,8 @@ public class MainFragment extends Fragment
         }
 
         View rootView = inflater.inflate( R.layout.fragment_main, container, false );
-        _listView = ( ListView ) rootView.findViewById( R.id.list_view );
-        _adapter = new ExtendedAdapter( inflater );
-        _listView.setAdapter( _adapter );
+        _buttonAbout = ( Button ) rootView.findViewById( R.id.btn_about );
+        _buttonAbout.setOnClickListener( this );
         return rootView;
     }
 
@@ -64,7 +61,7 @@ public class MainFragment extends Fragment
         super.onAttach( activity );
         try
         {
-            mListener = ( MainFragmentListener ) activity;
+            _listener = ( MainFragmentListener ) activity;
         }
         catch( ClassCastException e )
         {
@@ -77,7 +74,7 @@ public class MainFragment extends Fragment
     public void onDetach()
     {
         super.onDetach();
-        mListener = null;
+        _listener = null;
     }
 
     @Override
@@ -86,8 +83,17 @@ public class MainFragment extends Fragment
         super.onSaveInstanceState( bundle );
     }
 
-    public void setAdapterMessage( String msg )
+    @Override
+    public void onClick( View v )
     {
-        _adapter.addMessage( msg );
+        Button button = ( Button ) v;
+
+        switch( button.getId() )
+        {
+            case R.id.btn_about:
+                _listener.aboutApp();
+                break;
+
+        }
     }
 }

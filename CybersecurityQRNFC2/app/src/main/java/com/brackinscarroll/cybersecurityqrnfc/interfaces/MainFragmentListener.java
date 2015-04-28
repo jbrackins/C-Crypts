@@ -7,4 +7,5 @@ public interface MainFragmentListener
 {
     public void onNavigationDrawerItemSelected( int position );
 
+    public void aboutApp();
 }
