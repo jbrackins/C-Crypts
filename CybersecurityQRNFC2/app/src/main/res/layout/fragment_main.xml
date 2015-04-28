@@ -8,9 +8,54 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity$PlaceholderFragment">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_Message"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:hint="@string/Message_Hint"
+        android:inputType="text" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Encode_Message"
+        android:id="@+id/button_Encode"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onButtonEncodeClicked"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Encoded_Message"
+        android:id="@+id/textView_EncodedMessage"
+        android:layout_below="@+id/editText_Message"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Decoded_Text"
+        android:id="@+id/textView_DecodedMessage"
+        android:layout_below="@+id/textView_EncodedMessage"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView_QRCode"
+        android:layout_below="@+id/textView_DecodedMessage"
+        android:layout_above="@+id/button_Encode"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Decode Message"
+        android:id="@+id/button_Decode"
+        android:layout_above="@+id/button_Encode"
+        android:layout_alignParentStart="true"
+        android:onClick="onButtonDecodeClicked"/>
 </RelativeLayout>
