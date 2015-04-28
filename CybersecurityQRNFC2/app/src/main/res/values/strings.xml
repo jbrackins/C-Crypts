@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Cybersecurity QR/NFC</string>
+    <color name="blue">#3EC4DE</color>
+    <color name="darkblue">#256C7A</color>
+    <color name="red">#DE583E</color>
+    <color name="darkred">#7A3325</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <string name="app_name">C-Crypts</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
@@ -12,10 +19,21 @@
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
+    <string name="str_cool">Cool!</string>
+    <string name="str_awesome">Awesome!</string>
+
     <string name="title_frag_1">Home</string>
     <string name="title_frag_2">Generate Key Pair</string>
     <string name="title_frag_3">Authenticate Key Pair</string>
     <string name="title_frag_4">Read PlainText NFC</string>
     <string name="title_frag_5">Write PlainText NFC</string>
+    <string name="str_simple_read">Simple Read</string>
+    <string name="str_simple_nfc_result">Touch NFC Tag on Phone!</string>
+    <string name="str_simple_nfc_message">"NFC Payload: "</string>
+    <string name="str_simple_read_desc">This page verifies standard scanning of NFC tags used as proof of concept early on in our project. You can write simple plaintext by swiping the nav drawer and selecting \"Write PlainText NFC\" and read a written message on this page.</string>
+    <string name="str_simple_write">Simple Write</string>
+    <string name="str_simple_write_desc">This page verifies standard writing of messages to an NFC card. Write a message in the text field below, then set an NFC card on the phone to write the message. THIS WILL WIPE THE CONTENT PREVIOUSLY ON THE NFC CARD!!!</string>
+    <string name="str_simple_write_hint">Write a message here, then place an NFC Tag on Phone!</string>
+    <string name="str_simple_write_clear">Clear</string>
 
 </resources>

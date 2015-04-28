@@ -2,12 +2,50 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:background="@color/blue"
              tools:context="com.brackinscarroll.cybersecurityqrnfc.views.SimpleReadFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Simple Read"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/str_simple_read"
+            android:id="@+id/text_view_simple_read_header"
+            android:textSize="40sp"
+            android:textIsSelectable="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/str_simple_read_desc"
+            android:id="@+id/text_view_simple_read_desc"
+            android:textSize="20sp"
+            android:layout_margin="10dip"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/str_simple_nfc_result"
+                android:id="@+id/text_view_simple_read_result"
+                android:textColor="@color/white"
+
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

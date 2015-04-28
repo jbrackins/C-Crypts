@@ -2,12 +2,62 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:background="@color/red"
              tools:context="com.brackinscarroll.cybersecurityqrnfc.views.SimpleWriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Simple Write"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/str_simple_write"
+            android:id="@+id/text_view_simple_write_header"
+            android:textSize="40sp"
+            android:textIsSelectable="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/str_simple_write_desc"
+            android:id="@+id/text_view_simple_write_desc"
+            android:textSize="20sp"
+            android:layout_margin="10dip"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/edit_text_simple_write_message"
+                android:textColor="@color/white"
+
+                android:layout_gravity="center"
+                android:singleLine="false"
+                android:hint="@string/str_simple_write_hint"
+                android:textAlignment="center"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_button"
+                android:text="@string/str_simple_write_clear"
+                android:id="@+id/btn_clear"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal|bottom"/>
+        </FrameLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
+

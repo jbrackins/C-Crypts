@@ -5,6 +5,5 @@ package com.brackinscarroll.cybersecurityqrnfc.interfaces;
  */
 public interface MessageListener
 {
-    void onMessageReceived( byte[] msg );
-    void onError( Exception e );
+
 }

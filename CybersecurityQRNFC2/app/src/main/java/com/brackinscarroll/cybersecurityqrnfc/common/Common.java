@@ -26,28 +26,37 @@ public class Common
     {
         public class MainFragment
         {
+            public static final int ID = 0;
             public final static String TAG = "MainFragment";
+        }
+
+        public class KeyGenerateFragment
+        {
+            public static final int ID = 1;
+
+            public final static String TAG = "KeyGenerateFragment";
+        }
+
+        public class KeyAuthenticateFragment
+        {
+            public static final int ID = 2;
+            public final static String TAG = "KeyAuthenticateFragment";
         }
 
         public class SimpleReadFragment
         {
+            public static final int ID = 3;
             public final static String TAG = "SimpleReadFragment";
         }
 
         public class SimpleWriteFragment
         {
+            public static final int ID = 4;
             public final static String TAG = "SimpleWriteFragment";
         }
 
-        public class KeyAuthenticateFragment
-        {
-            public final static String TAG = "KeyAuthenticateFragment";
-        }
 
-        public class KeyGenerateFragment
-        {
-            public final static String TAG = "KeyGenerateFragment";
-        }
+
 
 
         public class Navigation
