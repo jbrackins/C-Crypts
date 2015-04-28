@@ -25,6 +25,8 @@ import java.security.KeyPairGenerator;
 import java.security.KeyPair;
 import java.security.Key;
 import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 import java.security.KeyFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
@@ -35,7 +37,6 @@ import com.brackinscarroll.cybersecurityqrnfc.views.MainFragment;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
-import com.google.zxing.qrcode.encoder.QRCode.*;
 
 public class MainActivity extends ActionBarActivity implements MainFragmentListener
 {
@@ -392,11 +393,45 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
                 TextView TextViewDecoded = (TextView) findViewById(R.id.textView_DecodedMessage);
                 TextViewDecoded.setText("Decoded Message: " + new String(decodedBytes));
             }
-            if(resultCode == RESULT_CANCELED)
-            {
-                Toast.makeText(this, "Couldn't Read QR Code", Toast.LENGTH_SHORT).show();
-                //handle cancel
-            }
+        }
+        if(resultCode == RESULT_CANCELED)
+        {
+            Toast.makeText(this, "Couldn't Read QR Code", Toast.LENGTH_SHORT).show();
+            //handle cancel
+        }
+    }
+
+    public String keyToString ()
+    {
+        try
+        {
+            KeyFactory fact = KeyFactory.getInstance("RSA");
+
+            X509EncodedKeySpec spec = fact.getKeySpec(m_publicKey, X509EncodedKeySpec.class);
+            String stringKey = Base64.encodeToString(spec.getEncoded(), Base64.DEFAULT);
+
+            return stringKey;
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, "Couldn't generate string from key", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
+
+    public void stringToKey (String stringKey)
+    {
+        try
+        {
+            KeyFactory fact = KeyFactory.getInstance("RSA");
+
+            byte[] encodedKey = Base64.decode(stringKey, Base64.DEFAULT);
+            X509EncodedKeySpec encodedPubSpec = new X509EncodedKeySpec(encodedKey);
+            m_publicKey = fact.generatePublic(encodedPubSpec);
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, "Couldn't generate key from string", Toast.LENGTH_SHORT).show();
         }
     }
 }
