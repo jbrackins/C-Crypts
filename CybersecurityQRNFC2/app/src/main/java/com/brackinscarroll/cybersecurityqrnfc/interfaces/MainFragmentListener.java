@@ -8,4 +8,5 @@ import android.view.View;
 public interface MainFragmentListener
 {
     public void onButtonEncodeClicked (View view);
+    public void onButtonDecodeClicked (View view);
 }

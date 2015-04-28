@@ -49,4 +49,13 @@
         android:layout_below="@+id/textView_DecodedMessage"
         android:layout_above="@+id/button_Encode"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Decode Message"
+        android:id="@+id/button_Decode"
+        android:layout_above="@+id/button_Encode"
+        android:layout_alignParentStart="true"
+        android:onClick="onButtonDecodeClicked"/>
 </RelativeLayout>

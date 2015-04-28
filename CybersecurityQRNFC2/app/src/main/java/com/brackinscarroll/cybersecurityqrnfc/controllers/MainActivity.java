@@ -2,9 +2,11 @@ package com.brackinscarroll.cybersecurityqrnfc.controllers;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -137,36 +139,37 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
         {
             byte[] encodedBytes = encodeMessage(TextViewMessage.getText().toString().getBytes());
 
-            // send encoded bytes
-
             TextView TextViewEncoded = (TextView) findViewById(R.id.textView_EncodedMessage);
-            byte[] decodedBytes;
+
             try
             {
                 // use encode to string to get the byte array to a string for
                 String temp = Base64.encodeToString(encodedBytes, Base64.DEFAULT);
                 TextViewEncoded.setText("Encoded Message: " + Base64.encodeToString(encodedBytes, Base64.DEFAULT));
                 toQRCode(Base64.encodeToString(encodedBytes, Base64.DEFAULT));
-                decodedBytes = decodeMessage(Base64.decode(temp, Base64.DEFAULT));
-                TextView TextViewDecoded = (TextView) findViewById(R.id.textView_DecodedMessage);
-                TextViewDecoded.setText("Decoded Message: " + new String(decodedBytes));
             }
             catch (Exception ex)
             {
                 TextViewEncoded.setText("Encoded Message: ");
             }
+        }
+    }
 
+    @Override
+    public void onButtonDecodeClicked(View view)
+    {
+        try
+        {
+            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); // "PRODUCT_MODE for bar codes
 
-
-            /*
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                TextViewDecoded.setText("Decoded Message: ");
-            }*/
+            startActivityForResult(intent, 0);
+        }
+        catch (Exception e)
+        {
+            Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+            Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+            startActivity(marketIntent);
         }
     }
 
@@ -372,6 +375,28 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
             SharedPreferences.Editor editor = settings.edit();
             editor.putBoolean("keyPairGenerated", true);
             editor.commit();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0)
+        {
+            if (resultCode == RESULT_OK)
+            {
+                String encodedMessage = data.getStringExtra("SCAN_RESULT");
+
+                byte[] decodedBytes = decodeMessage(Base64.decode(encodedMessage, Base64.DEFAULT));
+                TextView TextViewDecoded = (TextView) findViewById(R.id.textView_DecodedMessage);
+                TextViewDecoded.setText("Decoded Message: " + new String(decodedBytes));
+            }
+            if(resultCode == RESULT_CANCELED)
+            {
+                Toast.makeText(this, "Couldn't Read QR Code", Toast.LENGTH_SHORT).show();
+                //handle cancel
+            }
         }
     }
 }
