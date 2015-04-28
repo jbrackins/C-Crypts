@@ -90,7 +90,7 @@ public class SimpleWriteFragment extends Fragment implements View.OnClickListene
     public String getMessage()
     {
         if( _editTextNFCMessage!= null )
-            return _editTextNFCMessage.toString();
+            return _editTextNFCMessage.getText().toString();
         else
             return "";
     }

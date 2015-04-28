@@ -8,6 +8,8 @@ import com.brackinscarroll.cybersecurityqrnfc.R;
 public class Common
 {
 
+    public static final String MIME_TEXT_PLAIN = "text/plain";
+
     public class Activities
     {
         public class MainActivity
@@ -54,10 +56,6 @@ public class Common
             public static final int ID = 4;
             public final static String TAG = "SimpleWriteFragment";
         }
-
-
-
-
 
         public class Navigation
         {

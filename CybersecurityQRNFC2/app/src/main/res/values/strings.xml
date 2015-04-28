@@ -35,5 +35,18 @@
     <string name="str_simple_write_desc">This page verifies standard writing of messages to an NFC card. Write a message in the text field below, then set an NFC card on the phone to write the message. THIS WILL WIPE THE CONTENT PREVIOUSLY ON THE NFC CARD!!!</string>
     <string name="str_simple_write_hint">Write a message here, then place an NFC Tag on Phone!</string>
     <string name="str_simple_write_clear">Clear</string>
+    <string name="str_msg_null">Null Tag</string>
+    <string name="str_msg_empty">Message Is Empty... Nothing Written to NFC</string>
+    <string name="str_msg_success">Message Written to NFC</string>
+    <string name="str_msg_ioexception">Something REALLY messed up</string>
+    <string name="str_msg_formatexception">This device doesn\'t support NFC.</string>
+    <string name="str_msg_malformedmime">Check your mime type.</string>
+    <string name="str_msg_wrong_mime">"Wrong mime type: "</string>
+    <string name="str_ascii">US-ASCII</string>
+    <string name="str_msg_unsupported_encoding">Unsupported Encoding</string>
+    <string name="str_utf8">UTF-8</string>
+    <string name="str_utf16">UTF-16</string>
+    <string name="str_msg_nav_position">" | Position: "</string>
+    <string name="str_msg_nfc_disabled">NFC is disabled...</string>
 
 </resources>
