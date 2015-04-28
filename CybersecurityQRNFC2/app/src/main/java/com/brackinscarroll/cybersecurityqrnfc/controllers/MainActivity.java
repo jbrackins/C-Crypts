@@ -3,14 +3,19 @@ package com.brackinscarroll.cybersecurityqrnfc.controllers;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -26,6 +31,9 @@ import com.brackinscarroll.cybersecurityqrnfc.R;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
 import com.brackinscarroll.cybersecurityqrnfc.views.MainFragment;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.encoder.QRCode.*;
 
 public class MainActivity extends ActionBarActivity implements MainFragmentListener
 {
@@ -132,26 +140,33 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
             // send encoded bytes
 
             TextView TextViewEncoded = (TextView) findViewById(R.id.textView_EncodedMessage);
+            byte[] decodedBytes;
             try
             {
+                // use encode to string to get the byte array to a string for
+                String temp = Base64.encodeToString(encodedBytes, Base64.DEFAULT);
                 TextViewEncoded.setText("Encoded Message: " + Base64.encodeToString(encodedBytes, Base64.DEFAULT));
+                toQRCode(Base64.encodeToString(encodedBytes, Base64.DEFAULT));
+                decodedBytes = decodeMessage(Base64.decode(temp, Base64.DEFAULT));
+                TextView TextViewDecoded = (TextView) findViewById(R.id.textView_DecodedMessage);
+                TextViewDecoded.setText("Decoded Message: " + new String(decodedBytes));
             }
             catch (Exception ex)
             {
                 TextViewEncoded.setText("Encoded Message: ");
             }
 
-            byte[] decodedBytes = decodeMessage(encodedBytes);
 
-            TextView TextViewDecoded = (TextView) findViewById(R.id.textView_DecodedMessage);
+
+            /*
             try
             {
-                TextViewDecoded.setText("Decoded Message: " + new String(decodedBytes));
+
             }
             catch (Exception ex)
             {
                 TextViewDecoded.setText("Decoded Message: ");
-            }
+            }*/
         }
     }
 
@@ -182,7 +197,6 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
             c.init(Cipher.ENCRYPT_MODE, m_privateKey);
             encodedBytes = c.doFinal(plainMessage);
 
-//            encodedBytes = c.doFinal(TextViewMessage.getText().toString().getBytes());
         }
         catch (Exception ex)
         {
@@ -286,6 +300,35 @@ public class MainActivity extends ActionBarActivity implements MainFragmentListe
         catch (Exception ex)
         {
             return false;
+        }
+    }
+
+    private  void toQRCode (String message)
+    {
+        WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        Display display = manager.getDefaultDisplay();
+        Point point = new Point();
+        display.getSize(point);
+        int width = point.x;
+        int height = point.y;
+        int smallerDimension = width < height ? width : height;
+        smallerDimension = smallerDimension * 3/4;
+
+        QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(message,
+                null,
+                Contents.Type.TEXT,
+                BarcodeFormat.QR_CODE.toString(),
+                smallerDimension);
+        try
+        {
+            Bitmap bitmap = qrCodeEncoder.encodeAsBitmap();
+            ImageView myImage = (ImageView) findViewById(R.id.imageView_QRCode);
+            myImage.setImageBitmap(bitmap);
+
+        }
+        catch (WriterException e)
+        {
+            e.printStackTrace();
         }
     }
 
