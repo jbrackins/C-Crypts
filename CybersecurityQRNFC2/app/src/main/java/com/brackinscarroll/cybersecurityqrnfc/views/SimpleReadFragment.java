@@ -1,59 +1,51 @@
 package com.brackinscarroll.cybersecurityqrnfc.views;
 
+
 import android.app.Activity;
+import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.brackinscarroll.cybersecurityqrnfc.R;
-import com.brackinscarroll.cybersecurityqrnfc.adapters.ExtendedAdapter;
+import com.brackinscarroll.cybersecurityqrnfc.common.Common;
 import com.brackinscarroll.cybersecurityqrnfc.interfaces.MainFragmentListener;
 
-public class MainFragment extends Fragment implements View.OnClickListener
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SimpleReadFragment extends Fragment
 {
 
+
     private MainFragmentListener _listener;
+    private TextView _textViewResult;
 
-    private Button _buttonAbout;
-
-    public MainFragment()
+    public SimpleReadFragment()
     {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate( Bundle savedInstanceState )
-    {
-        super.onCreate( savedInstanceState );
-
-        if( savedInstanceState == null )
-        {
-        }
-        else
-        {
-        }
-    }
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState )
     {
-        if( savedInstanceState == null )
-        {
-        }
-        else
-        {
-        }
+        View rootView = inflater.inflate( R.layout.fragment_simple_read, container, false );
 
-        View rootView = inflater.inflate( R.layout.fragment_main, container, false );
-        _buttonAbout = ( Button ) rootView.findViewById( R.id.btn_about );
-        _buttonAbout.setOnClickListener( this );
+        _textViewResult = ( TextView ) rootView.findViewById( R.id.text_view_simple_read_result );
+        // Inflate the layout for this fragment
         return rootView;
     }
+
 
     @Override
     public void onAttach( Activity activity )
@@ -83,17 +75,9 @@ public class MainFragment extends Fragment implements View.OnClickListener
         super.onSaveInstanceState( bundle );
     }
 
-    @Override
-    public void onClick( View v )
+
+    public void setResult( String result )
     {
-        Button button = ( Button ) v;
-
-        switch( button.getId() )
-        {
-            case R.id.btn_about:
-                _listener.aboutApp();
-                break;
-
-        }
+        //whatever, this isn't working :(
     }
 }
