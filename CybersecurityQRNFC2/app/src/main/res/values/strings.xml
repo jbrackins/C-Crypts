@@ -55,5 +55,9 @@
     <string name="str_home_desc">This app is our final project for Cybersecurity ( CSC-426 / CSC-526 ) at the South Dakota School of Mines and Technology. Use the Navigation Tab to acces the different parts of the app!</string>
     <string name="str_about">About</string>
     <string name="str_about_desc">ABOUT DIALOG HERE</string>
+    <string name="Message_Hint">Enter Message to encode here</string>
+    <string name="Encode_Message">Encode Message</string>
+    <string name="Encoded_Message">Encoded Message:</string>
+    <string name="Decoded_Text">Decoded Text:</string>
 
 </resources>
